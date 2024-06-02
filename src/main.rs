@@ -1,4 +1,5 @@
 mod gpx_reader;
+mod gpx_to_4d;
 
 use clap::Parser;
 use gpx_reader::read_gpx;
@@ -18,5 +19,7 @@ fn main() {
 
     let points = read_gpx(args.filename);
 
-    println!("{:?}", points);
+    let points_4d = gpx_to_4d::convert(points);
+
+    println!("{:?}", points_4d);
 }

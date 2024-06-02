@@ -11,12 +11,12 @@ use xml::{
 
 #[derive(Debug, PartialEq)]
 pub struct GpxPoint {
-    lat: f64,
-    lon: f64,
-    elevation: Option<f64>,
-    time: Option<DateTime<Utc>>,
-    heart_rate: Option<u32>,
-    cadence: Option<u32>,
+    pub lat: f64,
+    pub lon: f64,
+    pub elevation: Option<f64>,
+    pub time: Option<DateTime<Utc>>,
+    pub heart_rate: Option<u32>,
+    pub cadence: Option<u32>,
 }
 
 pub fn read_gpx(filename: PathBuf) -> Vec<GpxPoint> {
