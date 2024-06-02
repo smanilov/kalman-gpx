@@ -3,6 +3,7 @@ use chrono::{DateTime, Utc};
 use std::fs::File;
 use std::io::BufReader;
 use std::mem;
+use std::path::PathBuf;
 use xml::{
     attribute::OwnedAttribute,
     reader::{EventReader, Result, XmlEvent},
@@ -18,7 +19,7 @@ pub struct GpxPoint {
     cadence: Option<u32>,
 }
 
-pub fn read_gpx(filename: &str) -> Vec<GpxPoint> {
+pub fn read_gpx(filename: PathBuf) -> Vec<GpxPoint> {
     let file = File::open(filename).expect("Unable to open file");
     let file = BufReader::new(file);
     GpxParser::new().parse_gpx(file)
