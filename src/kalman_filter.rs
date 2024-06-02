@@ -3,7 +3,8 @@ use std::ops::Mul;
 use crate::gpx_to_4d::Point4D;
 use nalgebra::{base::{Matrix2, Matrix2x6, Matrix6, Matrix6x1}, Matrix2x1};
 
-pub fn kalman_filter(points: &Vec<Point4D>) -> Vec<Point4D> {
+pub fn kalman_filter(points: &Vec<Point4D>, model_uncertainty: f64, sensor_uncertainty: f64) -> Vec<Point4D> {
+    // The math comes from a piece of paper. This is all we know.
     let delta_t = 1f64;
 
     #[rustfmt::skip]
@@ -25,7 +26,7 @@ pub fn kalman_filter(points: &Vec<Point4D>) -> Vec<Point4D> {
     let h_t = h.transpose();
 
     // Uncertainty in model.
-    let sigma_a = 1f64;
+    let sigma_a = model_uncertainty;
 
     #[rustfmt::skip]
     let q_a = Matrix6::<f64>::new(
@@ -40,8 +41,8 @@ pub fn kalman_filter(points: &Vec<Point4D>) -> Vec<Point4D> {
     let q = f.mul(q_a.mul(f_t));
 
     // Uncertainty in sensor.
-    let sigma_x = 100f64;
-    let sigma_y = 100f64;
+    let sigma_x = sensor_uncertainty;
+    let sigma_y = sensor_uncertainty;
 
     #[rustfmt::skip]
     let r = Matrix2::<f64>::new(

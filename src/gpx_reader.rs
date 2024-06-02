@@ -160,7 +160,8 @@ impl GpxParser {
                 self.handle_event(parser, event)
             }
         } else {
-            println!("warning: time outside trkpt");
+            // note: this is ok: the trk can have a top-level time
+            // println!("warning: time outside trkpt");
             true
         }
     }

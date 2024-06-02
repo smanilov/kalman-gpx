@@ -18,7 +18,9 @@ fn split_to_lle_time(gpx_point: GpxPoint) -> (LLE<Wgs84>, DateTime<Utc>) {
 pub struct Point4D {
     pub x_m: f64,
     pub y_m: f64,
+    #[allow(dead_code)]
     pub z_m: f64,
+    #[allow(dead_code)]
     pub secs: f64,
 }
 
