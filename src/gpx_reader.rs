@@ -86,8 +86,8 @@ impl GpxParser {
                 "ele" => self.handle_ele(&mut parser),
                 "time" => self.handle_time(&mut parser),
                 "extensions" => self.handle_extensions(),
-                "gpxtpx:hr" => self.handle_hr(&mut parser),
-                "gpxtpx:cad" => self.handle_cad(&mut parser),
+                "hr" => self.handle_hr(&mut parser),
+                "cad" => self.handle_cad(&mut parser),
                 _ => true,
             },
             Ok(XmlEvent::EndElement { name }) => match name.local_name.as_str() {
@@ -221,7 +221,7 @@ mod tests {
     #[test]
     fn test_parse_gpx() {
         let gpx_data = r#"
-        <gpx>
+        <gpx xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
             <trkpt lat="44.4705880" lon="26.1146640">
                 <ele>76.1</ele>
                 <time>2023-08-24T16:49:58Z</time>
