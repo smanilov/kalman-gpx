@@ -5,6 +5,8 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4"
-geoconv = "0.4"
 clap = { version = "4.5", features = ["derive"] }
+geoconv = "0.4"
+nalgebra = "0.32"
+plotters = "0.3"
 xml-rs = "0.8"
